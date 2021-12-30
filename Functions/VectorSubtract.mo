@@ -1,5 +1,3 @@
-within Functions;
-
 block VectorSubtract "Remove a Vector From Another"
   Modelica.Blocks.Interfaces.RealInput u1[3] annotation(Placement(visible = true, transformation(origin = {-40.0, 60.0}, extent = {{-20.0, -20.0}, {20.0, 20.0}}, rotation = 0), iconTransformation(origin = {-120.0, 50.0}, extent = {{-20.0, -20.0}, {20.0, 20.0}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput u2[3] annotation(Placement(visible = true, transformation(origin = {-40.0, -60.0}, extent = {{-20.0, -20.0}, {20.0, 20.0}}, rotation = 0), iconTransformation(origin = {-120.0, -50.0}, extent = {{-20.0, -20.0}, {20.0, 20.0}}, rotation = 0)));

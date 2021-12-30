@@ -1,5 +1,3 @@
-within Functions;
-
 function bumper
   input Real t1;
   input Real t2;

@@ -1,6 +1,4 @@
-within Functions;
-
-block Vector_Const "Create a Vector in 3D Space"
+block Vector_Const
   parameter Real k[3](start = 1.0) "Constant output vector" annotation(Dialog(groupImage = "modelica://Modelica/Resources/Images/Blocks/Sources/Constant.png"));
   Modelica.Blocks.Interfaces.RealOutput y[3] annotation(Placement(visible = true, transformation(origin = {140, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
 equation

@@ -1,5 +1,3 @@
-within Functions;
-
 block Rad_to_Deg "Converts Radians to Degrees"
   extends Modelica.Blocks.Interfaces.PartialConversionBlock(u(unit = "rad"), y(unit = "deg"));
 equation
