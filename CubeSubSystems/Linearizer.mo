@@ -9,6 +9,9 @@ model Linearizer "Outputs Measured rotational 3DOF angles"
   parameter Boolean batmanGamma "Invert Gamma signal (=false signal is inverted)";
   parameter Boolean useDigitalSignal "Turn on digital Signal";
   parameter Modelica.SIunits.Time sampleperiod "Sample period of the digital signal";
+  // for library 3.2.3
+  //parameter Modelica.Units.SI.Time sampleperiod "Sample period of the digital signal";
+  // for library 4.0
   parameter Real mu "Expectation (mean) value of the normal distribution";
   parameter Real sigma "Standard deviation of the normal distribution";
   Modelica.Blocks.Interfaces.RealInput v[3] annotation(Placement(visible = true, transformation(origin = {-215, 80}, extent = {{-20, -20}, {20, 20}}, rotation = 0), iconTransformation(origin = {-120, 50}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));

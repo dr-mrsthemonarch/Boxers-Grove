@@ -2,9 +2,10 @@ within CubeSubSystems;
 
 model ADC_zerorder "Basic ADC with Normal noise"
   parameter Modelica.SIunits.Time sampleperiod "Sample Period of ADC";
+  // for library 3.2.3
+  //parameter Modelica.Units.SI.Time sampleperiod "Sample Period of ADC";// for library 4.0
   parameter Real mu "Expectation (mean) value of the normal distribution";
   parameter Real sigma "Standard deviation of the normal distribution";
-  // parameter Real sampleperiod;
   Modelica.Blocks.Discrete.ZeroOrderHold zeroOrderHold1(samplePeriod = sampleperiod, ySample.fixed = false) annotation(Placement(visible = true, transformation(origin = {-10, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput y annotation(Placement(visible = true, transformation(origin = {90, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Noise.NormalNoise normalNoise1(samplePeriod = sampleperiod, mu = mu, sigma = sigma) annotation(Placement(visible = true, transformation(origin = {-10, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));

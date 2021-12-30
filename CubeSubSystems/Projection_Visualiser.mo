@@ -8,15 +8,24 @@ model Projection_Visualiser "Creates 3 1DOF Vectors described via a fixed 3DOF"
   Functions.VectorSubtract subX annotation(Placement(visible = true, transformation(origin = {-30, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Math.MatrixGain gainX(K = {{0.15, 0., 0.}, {0., 0.15, 0.}, {0., 0., 0.15}}) annotation(Placement(visible = true, transformation(origin = {50, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Functions.normalize normX annotation(Placement(visible = true, transformation(origin = {10, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.MultiBody.Visualizers.SignalArrow alpha(r_tail = {0, 0, 0}, diameter = 0.01, color = {255, 0, 0}) annotation(Placement(visible = true, transformation(origin = {90, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 360)));
+  //  Modelica.Mechanics.MultiBody.Visualizers.SignalArrow alpha(r_tail = {0, 0, 0}, color = {255, 0, 0}, animation = false) annotation(Placement(visible = true, transformation(origin = {90, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 360)));
+  // for library v4.0.0
+  Modelica.Mechanics.MultiBody.Visualizers.SignalArrow alpha(r_tail = {0, 0, 0}, color = {255, 0, 0}, animation = false, diameter = 0.01) annotation(Placement(visible = true, transformation(origin = {90, 70}, extent = {{-10, -10}, {10, 10}}, rotation = 360)));
+  // for library v3.2.3
   Functions.VectorSubtract subY annotation(Placement(visible = true, transformation(origin = {-30, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Math.MatrixGain gainY(K = {{0.15, 0., 0.}, {0., 0.15, 0.}, {0., 0., 0.15}}) annotation(Placement(visible = true, transformation(origin = {50, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Functions.normalize normY annotation(Placement(visible = true, transformation(origin = {10, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.MultiBody.Visualizers.SignalArrow beta(r_tail = {0, 0, 0}, diameter = 0.01, color = {0, 180, 0}) annotation(Placement(visible = true, transformation(origin = {90, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 360)));
+  //  Modelica.Mechanics.MultiBody.Visualizers.SignalArrow beta(r_tail = {0, 0, 0}, color = {0, 180, 0}, animation = false) annotation(Placement(visible = true, transformation(origin = {90, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 360)));
+  // for library v4.0.0
+  Modelica.Mechanics.MultiBody.Visualizers.SignalArrow beta(r_tail = {0, 0, 0}, color = {0, 180, 0}, animation = false, diameter = 0.01) annotation(Placement(visible = true, transformation(origin = {90, -10}, extent = {{-10, -10}, {10, 10}}, rotation = 360)));
+  // for library v3.2.3
   Functions.VectorSubtract subZ annotation(Placement(visible = true, transformation(origin = {-30, -130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Math.MatrixGain gainZ(K = {{0.15, 0., 0.}, {0., 0.15, 0.}, {0., 0., 0.15}}) annotation(Placement(visible = true, transformation(origin = {50, -130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Functions.normalize normZ annotation(Placement(visible = true, transformation(origin = {10, -130}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.MultiBody.Visualizers.SignalArrow gamma(r_tail = {0, 0, 0}, diameter = 0.01, color = {0, 0, 255}) annotation(Placement(visible = true, transformation(origin = {90, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 360)));
+  //  Modelica.Mechanics.MultiBody.Visualizers.SignalArrow gamma(r_tail = {0, 0, 0}, color = {0, 0, 255}, animation = false) annotation(Placement(visible = true, transformation(origin = {90, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 360)));
+  // for library v4.0.0
+  Modelica.Mechanics.MultiBody.Visualizers.SignalArrow gamma(r_tail = {0, 0, 0}, color = {0, 0, 255}, animation = false, diameter = 0.01) annotation(Placement(visible = true, transformation(origin = {90, -90}, extent = {{-10, -10}, {10, 10}}, rotation = 360)));
+  // for library v3.2.3
   Modelica.Mechanics.MultiBody.Parts.FixedTranslation translationX(animation = false, r = scalar * r_x) annotation(Placement(visible = true, transformation(origin = {10, 70}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
   Modelica.Mechanics.MultiBody.Parts.FixedTranslation translationY(animation = false, r = scalar * r_y) annotation(Placement(visible = true, transformation(origin = {10, -10}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
   Modelica.Mechanics.MultiBody.Parts.FixedTranslation translationZ(animation = false, r = scalar * r_z) annotation(Placement(visible = true, transformation(origin = {10, -90}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));

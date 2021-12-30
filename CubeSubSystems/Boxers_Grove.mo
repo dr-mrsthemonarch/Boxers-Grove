@@ -1,12 +1,13 @@
 within CubeSubSystems;
 
-model Boxers_Grove "3d Nonlinear Pendulum"
-  //  parameter Modelica.Mechanics.MultiBody.Types.Axis bodyn = {0, 1, 0} "Axis of Rotation" annotation(Evaluate = true);
-  //  parameter Real corner_init[3];
+model Boxers_Grove "3D Nonlinear Cubli Like Pendulum"
   parameter Boolean useInputForce = true "Turn Input force on or off";
   parameter Boolean useBodyAnimation = true "Turn on Body Animation";
   parameter Boolean useDigitalSignal = true "Turn on Digital Signal";
   parameter Modelica.SIunits.Time sampleperiod "Sample period of the digital signal";
+  //for library 3.2.3
+  //parameter Modelica.Units.SI.Time sampleperiod "Sample period of the digital signal";
+  // for library 4.0
   parameter Real mu "Expectation (mean) value of the normal distribution";
   parameter Real sigma "Standard deviation of the normal distribution";
   CubeSubSystems.wall wallY(useWallBody = true, r_vec = 0.15 / 2 * {1, 0, 1}, bearing_dir = {0, 1, 0}, bodyn = 0.15 / 2 * {1, 0, 1}, r_shape = 0.15 / 2 * {0, 0, 1}, colour = {0, 180, 0}, length_dir = {1, 0, 0}, arrowcolour = {0, 180, 0}) annotation(Placement(visible = true, transformation(origin = {-60, 10}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -16,14 +17,18 @@ model Boxers_Grove "3d Nonlinear Pendulum"
   Modelica.Blocks.Interfaces.RealInput yIn annotation(Placement(visible = true, transformation(origin = {80, -50}, extent = {{20, -20}, {-20, 20}}, rotation = 0), iconTransformation(origin = {-120, 0}, extent = {{-20, -20}, {20, 20}}, rotation = -360)));
   Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a annotation(Placement(visible = true, transformation(origin = {-175, 0}, extent = {{-16, -16}, {16, 16}}, rotation = 0), iconTransformation(origin = {0, -100}, extent = {{-16, -16}, {16, 16}}, rotation = -90)));
   Modelica.Mechanics.MultiBody.Parts.FixedTranslation forceTranslation(animation = false, r = 0.15 * {1, 1, 1}) annotation(Placement(visible = true, transformation(origin = {-10, 145}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  //Modelica.Mechanics.MultiBody.Forces.WorldForce force(animation = true, resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameB.world, color = {255, 0, 255}) if useInputForce annotation(Placement(visible = true, transformation(origin = {50, 145}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
   Modelica.Mechanics.MultiBody.Forces.WorldForce force(animation = true, resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameB.world, color = {255, 0, 255}, N_to_m = 0.3, diameter = 0.008) if useInputForce annotation(Placement(visible = true, transformation(origin = {50, 145}, extent = {{10, -10}, {-10, 10}}, rotation = 0)));
+  // for library v3.2.3
   Modelica.Mechanics.MultiBody.Visualizers.FixedFrame fixedFrameGOM(color_x = {155, 0, 0}, color_y = {0, 128, 0}, color_z = {0, 0, 200}, diameter(displayUnit = "mm") = 0.005, showLabels = false) annotation(Placement(visible = true, transformation(origin = {-25, -135}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.MultiBody.Sensors.AbsoluteSensor absoluteSensor(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.world, get_r = true, arrowDiameter = 0.003, arrowColor = {255, 0, 255}, get_a = false, get_z = true, get_w = false, get_angles = false, sequence = {3, 1, 3}, animation = true) annotation(Placement(visible = true, transformation(origin = {-25, -165}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  //Modelica.Mechanics.MultiBody.Sensors.AbsoluteSensor absoluteSensor(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.world, get_r = true, arrowColor = {255, 0, 255}, get_a = false, get_z = true, get_w = false, get_angles = false, sequence = {3, 1, 3}, animation = false) annotation(Placement(visible = true, transformation(origin = {-25, -165}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Sensors.AbsoluteSensor absoluteSensor(resolveInFrame = Modelica.Mechanics.MultiBody.Types.ResolveInFrameA.world, get_r = true, arrowColor = {255, 0, 255}, get_a = false, get_z = true, get_w = false, get_angles = false, sequence = {3, 1, 3}, animation = false, arrowDiameter = 0.003) annotation(Placement(visible = true, transformation(origin = {-25, -165}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  // for library v3.2.3
   Modelica.Blocks.Interfaces.RealOutput bodyR[3] annotation(Placement(visible = true, transformation(origin = {-20, -205}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {-75, -110}, extent = {{-10, -10}, {10, 10}}, rotation = -810)));
   Modelica.Blocks.Interfaces.RealInput zIn annotation(Placement(visible = true, transformation(origin = {80, -115}, extent = {{20, -20}, {-20, 20}}, rotation = 0), iconTransformation(origin = {-120, -50}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealInput xIn annotation(Placement(visible = true, transformation(origin = {80, 50}, extent = {{20, -20}, {-20, 20}}, rotation = 0), iconTransformation(origin = {-120, 50}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   Modelica.Mechanics.MultiBody.Joints.Spherical frictionlessCornerGOM(animation = false, angles_fixed = true, angles_start = {-1 * atan(sqrt(2)), 0, (-1 * Modelica.Constants.pi) - atan(((-((-6) + 2 * sqrt(3)) / (12 * sqrt(2))) + (6 + 2 * sqrt(3)) / (12 * sqrt(2))) / (((-6) + 2 * sqrt(3)) / (12 * sqrt(2)) - (6 + 2 * sqrt(3)) / (12 * sqrt(2))))}, sequence_start = {1, 2, 3}) if false annotation(Placement(visible = true, transformation(origin = {-130, 30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  Modelica.Mechanics.MultiBody.Joints.Spherical frictionlessCornerCOM(animation = false, angles_fixed = true, angles_start = {-0.905714, 0.00888755, -2.35187}, sequence_start = {1, 2, 3}, enforceStates = true) annotation(Placement(visible = true, transformation(origin = {-130, -30}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  Modelica.Mechanics.MultiBody.Joints.Spherical frictionlessCornerCOM(animation = false, angles_fixed = true, angles_start = {-0.905714, 0.00888755, -2.35187}, sequence_start = {1, 2, 3}, enforceStates = true) annotation(Placement(visible = true, transformation(origin = {-130, -35}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput wY annotation(Placement(visible = true, transformation(origin = {130, 15}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput wX annotation(Placement(visible = true, transformation(origin = {130, 115}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, 50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   Modelica.Blocks.Interfaces.RealOutput wZ annotation(Placement(visible = true, transformation(origin = {130, -80}, extent = {{-10, -10}, {10, 10}}, rotation = 0), iconTransformation(origin = {110, -50}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
@@ -52,12 +57,12 @@ equation
   connect(frictionlessCornerGOM.frame_b, wallX.mount) annotation(Line(visible = true, origin = {-62.5, -35}, points = {{-57.5, 65}, {-17.5, 65}, {-17.5, 155}, {42.5, 155}}, color = {95, 95, 95}));
   connect(frictionlessCornerGOM.frame_b, forceTranslation.frame_a) annotation(Line(visible = true, origin = {-62.5, 110}, points = {{-57.5, -80}, {-17.5, -80}, {-17.5, 35}, {42.5, 35}}, color = {95, 95, 95}));
   connect(frictionlessCornerGOM.frame_b, cubeFrame.frame_a) annotation(Line(visible = true, origin = {-62.5, -80}, points = {{-57.5, 110}, {-17.5, 110}, {-17.5, -55}, {-12.5, -55}}, color = {95, 95, 95}));
-  connect(frictionlessCornerCOM.frame_a, frame_a) annotation(Line(visible = true, origin = {-163.333, -20}, points = {{23.333, -10}, {-11.667, -10}, {-11.667, 20}}, color = {95, 95, 95}));
-  connect(frictionlessCornerCOM.frame_b, forceTranslation.frame_a) annotation(Line(visible = true, origin = {-62.5, 60}, points = {{-57.5, -90}, {-17.5, -90}, {-17.5, 85}, {42.5, 85}}, color = {95, 95, 95}));
-  connect(frictionlessCornerCOM.frame_b, wallY.mount) annotation(Line(visible = true, origin = {-62.5, 25}, points = {{-57.5, -55}, {-17.5, -55}, {-17.5, -15}, {-7.5, -15}}, color = {95, 95, 95}));
-  connect(frictionlessCornerCOM.frame_b, wallZ.mount) annotation(Line(visible = true, origin = {-62.5, -25}, points = {{-57.5, -5}, {-17.5, -5}, {-17.5, -45}, {42.5, -45}}, color = {95, 95, 95}));
-  connect(frictionlessCornerCOM.frame_b, wallX.mount) annotation(Line(visible = true, origin = {-62.5, -85}, points = {{-57.5, 55}, {-17.5, 55}, {-17.5, 205}, {42.5, 205}}, color = {95, 95, 95}));
-  connect(frictionlessCornerCOM.frame_b, cubeFrame.frame_a) annotation(Line(visible = true, origin = {-62.5, -130}, points = {{-57.5, 100}, {-17.5, 100}, {-17.5, -5}, {-12.5, -5}}, color = {95, 95, 95}));
+  connect(frictionlessCornerCOM.frame_a, frame_a) annotation(Line(visible = true, origin = {-163.333, -23.333}, points = {{23.333, -11.667}, {-11.667, -11.667}, {-11.667, 23.333}}, color = {95, 95, 95}));
+  connect(frictionlessCornerCOM.frame_b, forceTranslation.frame_a) annotation(Line(visible = true, origin = {-62.5, 60}, points = {{-57.5, -95}, {-17.5, -95}, {-17.5, 85}, {42.5, 85}}, color = {95, 95, 95}));
+  connect(frictionlessCornerCOM.frame_b, wallY.mount) annotation(Line(visible = true, origin = {-62.5, 25}, points = {{-57.5, -60}, {-17.5, -60}, {-17.5, -15}, {-7.5, -15}}, color = {95, 95, 95}));
+  connect(frictionlessCornerCOM.frame_b, wallZ.mount) annotation(Line(visible = true, origin = {-62.5, -25}, points = {{-57.5, -10}, {-17.5, -10}, {-17.5, -45}, {42.5, -45}}, color = {95, 95, 95}));
+  connect(frictionlessCornerCOM.frame_b, wallX.mount) annotation(Line(visible = true, origin = {-62.5, -85}, points = {{-57.5, 50}, {-17.5, 50}, {-17.5, 205}, {42.5, 205}}, color = {95, 95, 95}));
+  connect(frictionlessCornerCOM.frame_b, cubeFrame.frame_a) annotation(Line(visible = true, origin = {-62.5, -130}, points = {{-57.5, 95}, {-17.5, 95}, {-17.5, -5}, {-12.5, -5}}, color = {95, 95, 95}));
   connect(angularVelocity.y, Angle.u) annotation(Line(visible = true, origin = {24.5, -185}, points = {{-3.5, 0}, {3.5, 0}}));
   connect(cubeFrame.frame_b, absoluteSensor.frame_a) annotation(Line(visible = true, origin = {-42.5, -150}, points = {{-12.5, 15}, {-2.5, 15}, {-2.5, -15}, {7.5, -15}}));
   connect(absoluteSensor.z[3], angularVelocity.u) annotation(Line(visible = true, origin = {-9.25, -180.5}, points = {{-5.75, 4.5}, {-0.75, 4.5}, {-0.75, -4.5}, {7.25, -4.5}}));
