@@ -1,3 +1,22 @@
+//  This file is part of BoxersGrove.
+//
+//     BoxersGrove is free software: you can redistribute it and/or modify
+//     it under the terms of the GNU General Public License as published by
+//     the Free Software Foundation, either version 3 of the License, or
+//     (at your option) any later version.
+//
+//     BoxersGrove is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//     GNU General Public License for more details.
+//
+//     You should have received a copy of the GNU General Public License
+//     along with BoxersGrove.  If not, see <https://www.gnu.org/licenses/>.
+//
+//  Copyright © 2022 Veronica of Lizard-truth.com
+//  This file is part of project: Boxers Grove
+//
+
 model Projected_Linear_Control_v2 "Vector Project for Individual DOF control"
   CubeSubSystems.Boxers_Grove Cube(useInputForce = true, useBodyAnimation = true, useInputForce = true, useDigitalSignal = false, sampleperiod = 0.001, mu = 0, sigma = 0.002) annotation(Placement(visible = true, transformation(origin = {-140, 205}, extent = {{-20, -20}, {20, 20}}, rotation = 0)));
   inner Modelica.Mechanics.MultiBody.World world(label1 = "x", label2 = "z", n = {0, 0, -1}, axisDiameter = 0.005, axisColor_x = {155, 0, 0}, axisColor_y = {0, 128, 0}, axisColor_z = {0, 0, 200}, gravityArrowDiameter = 0.005, defaultArrowDiameter = 0.005, defaultBodyDiameter = 0.01, defaultN_to_m = 0.3) annotation(Placement(visible = true, transformation(origin = {-170, 30}, extent = {{-10, -10}, {10, 10}}, rotation = -360)));
