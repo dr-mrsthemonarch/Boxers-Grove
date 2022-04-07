@@ -1,6 +1,11 @@
 # Boxers_Grove
 A Modelica Library for simulation of Cubli style 3d Pendulums
 
+
+[benture_sim3.pdf](https://github.com/dr-mrsthemonarch/Boxers_Grove/files/8442542/benture_sim3.pdf)
+
+
+
 This is my current thesis project, the modelica simulation of cubli like 3D pendulums. I initially built this as a way to prove the simplicitiy of the system.
 
 That it indeed can be stabilized without resorting to overly complicated analysis and control. The cubli itself (according to the papers) requires 
