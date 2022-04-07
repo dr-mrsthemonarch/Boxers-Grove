@@ -2,7 +2,7 @@
 A Modelica Library for simulation of Cubli style 3d Pendulums
 
 
-[benture_sim3.pdf](https://github.com/dr-mrsthemonarch/Boxers_Grove/files/8442542/benture_sim3.pdf)
+![Image](https://github.com/dr-mrsthemonarch/Boxers_Grove/files/8442542/benture_sim3.pdf)
 
 
 
