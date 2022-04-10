@@ -1,4 +1,4 @@
-# Boxers_Grove
+# Boxers Grove
 A Modelica Library for simulation of Cubli style 3d Pendulums
 
 
